@@ -50,18 +50,21 @@ conversationURL = "https://api.twitter.com/2/tweets/search/recent?query=" + conv
 
 thread = requests.get(conversationURL, headers={
                       "Authorization": token}).json()
-media = thread.get("includes").get("media")
-mediaCount = len(media)
 currentItemIndex = 0
-
-for d in media:
-    url = d.get("url")
-    try:
+media = {}
+try:
+    media = thread.get("includes").get("media")
+    for d in media:
+        url = d.get("url")
         if url.endswith('.jpg'):
-            url = url[:-4]
+            url - url[:-4]
         linkList.append(url)
-    except Exception as e:
-        print(str(e))
+
+except Exception as e:
+    print(str(e) + "\nCouldn't find media in thread.")
+
+mediaCount = len(media)
+
 
 try:
     for link in linkList:

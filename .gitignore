@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# in case we downloaded any media to this directory
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.gif
 
 # Keeps our secret keys safe from Git
 config.py
