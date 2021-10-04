@@ -28,8 +28,8 @@ tweet = tweetData.json()
 linkList = []
 tweetMedia = tweet.get("includes").get("media")
 for d in tweetMedia:
-    url = d.get("url")
     try:
+        url = d.get("url")
         if url.endswith('.jpg'):
             url = url[:-4]
         linkList.append(url)
@@ -54,18 +54,20 @@ currentItemIndex = 0
 media = {}
 try:
     media = thread.get("includes").get("media")
-    for d in media:
-        url = d.get("url")
-        if url.endswith('.jpg'):
-            url - url[:-4]
-        linkList.append(url)
-
 except Exception as e:
     print(str(e) + "\nCouldn't find media in thread.")
 
-mediaCount = len(media)
+for d in media:
+    try:
+        url = d.get("url")
+        if url.endswith('.jpg'):
+            url = url[:-4]
+        linkList.append(url)
+    except Exception as e:
+        print(str(e) + "\nMedia has no URL")
 
 
+mediaCount = len(linkList)
 try:
     for link in linkList:
         currentItemIndex += 1
